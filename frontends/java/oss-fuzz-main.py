@@ -88,9 +88,14 @@ def find_fuzz_targets(path):
               os.rename(full_path, os.path.join(path, class_location))
             class_file_list.append(class_location)
 
-  # Create relevant .jar file for all loose class files if there are any
+  # if no class-files are found we expect to already have a .jar file with the relevant code
+  # e.g. as a result of building fuzz-targets via Maven
+  if class_file_list:
+    # Create relevant .jar file for all loose class files if there are any
   if len(class_file_list) > 0:
     subprocess.check_call("jar cvf package.jar %s" %  " ".join(class_file_list), shell=True, cwd=path)
+  else:
+    print("No package.jar created as no class-files could be found, this only works if there is already a .jar-file with compiled fuzz-targets")
 
   return targets
 
