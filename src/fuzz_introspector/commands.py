@@ -124,8 +124,8 @@ def analyse_end_to_end(arg_language,
             language=language,
             out_dir=out_dir,
             dump_files=dump_files,
-            harness_lists=harness_lists)
-            parallelise=is_parallel
+            harness_lists=harness_lists,
+            parallelise=is_parallel)
         for k, v in return_values2.items():
             return_values[k] = v
     except DataLoaderError:
