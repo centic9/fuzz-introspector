@@ -1088,6 +1088,8 @@ class JvmProject(Project[JvmSourceCodeFile]):
         all_classes = {}
         project_methods: list[JavaMethod] = []
 
+        logger.info('Source-Code-Files: %s', len(self.source_code_files))
+
         # Post process source code files with full qualified names
         # Retrieve full project methods, classes and information
         for source_code in self.source_code_files:
@@ -1112,6 +1114,8 @@ class JvmProject(Project[JvmSourceCodeFile]):
                 'function_names': list(methods.keys()),
             })
             project_methods.extend(methods.values())
+
+        logger.info('Methods: %s', len(project_methods))
 
         # Extract callsites of methods
         for method in project_methods:
