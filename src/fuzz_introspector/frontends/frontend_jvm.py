@@ -1361,6 +1361,7 @@ def load_treesitter_trees(source_files: list[str],
     source files."""
     results = []
 
+    logger.info('Sources: %s', len(source_files))
     for code_file in source_files:
         source_cls = JvmSourceCodeFile('jvm', code_file, entrypoint)
         if is_log:

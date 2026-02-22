@@ -45,6 +45,7 @@ def capture_source_files_in_tree(directory_tree: str,
     language_extensions = constants.LANGUAGE_EXTENSIONS.get(
         language.lower(), [])
 
+    logger.info('Directory: %s', directory_tree)
     for dirpath, _, filenames in os.walk(directory_tree):
         # Skip some non project directories
         if any(exclude in dirpath for exclude in EXCLUDE_DIRECTORIES):
@@ -53,6 +54,8 @@ def capture_source_files_in_tree(directory_tree: str,
         for filename in filenames:
             if pathlib.Path(filename).suffix in language_extensions:
                 language_files.append(os.path.join(dirpath, filename))
+
+        logger.info('Path: %s: files: %s, overall found: %s', dirpath, len(filenames), len(language_files))
     return language_files
 
 
