@@ -1121,6 +1121,8 @@ class JvmProject(Project[JvmSourceCodeFile]):
         for method in project_methods:
             method.extract_callsites(all_classes)
 
+        logger.info('Extracted callsites: %s', len(project_methods))
+
         # Process all project methods
         method_list = []
         for method in project_methods:
@@ -1189,6 +1191,8 @@ class JvmProject(Project[JvmSourceCodeFile]):
         if method_list:
             report['All functions'] = {}
             report['All functions']['Elements'] = method_list
+
+            logger.info('Method list: %s', len(method_list))
 
         # Store method list to all_functions for the project
         self.all_functions = project_methods[:]
