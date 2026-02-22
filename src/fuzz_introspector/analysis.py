@@ -110,9 +110,11 @@ class IntrospectionProject():
                 proc.join()
             result_dict = return_dict.copy()
         else:
+            idx = 0
             for profile in self.profiles:
                 fuzzer_profile.FuzzerProfile.accummulate_profile(
                     profile, self.base_folder, result_dict, f"uniq-{idx}")
+                idx += 1
 
         new_profiles = []
         for idx in return_dict:
